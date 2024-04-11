@@ -1,1 +1,1 @@
-web: nigerland.wsgi.application
+WSGIPath: nigerland.wsgi.application
