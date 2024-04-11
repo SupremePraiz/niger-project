@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from os import getenv
 
+import dj_database_url
+import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +30,7 @@ SECRET_KEY = 'django-insecure-t$+nd%b-sv_7_(*qszyue5y9h@#xgkpm4m!=!n-^d@6#e6haiv
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    getenv("niger-project.onrender.com")
+    getenv("srv-cob95mmn7f5s739f5dp0/deploys/dep-cobr9fen7f5s73ftgqh0")
 ]
 
 
