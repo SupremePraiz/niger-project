@@ -1,1 +1,1 @@
-web: gunicorn nigerland.wsgi --log-file -
+web: nigerland.wsgi.application
