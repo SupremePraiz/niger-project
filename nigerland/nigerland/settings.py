@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-t$+nd%b-sv_7_(*qszyue5y9h@#xgkpm4m!=!n-^d@6#e6haiv
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    getenv("https://niger-project.onrender.com")
+    getenv("niger-project.onrender.com")
 ]
 
 
