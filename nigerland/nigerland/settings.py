@@ -29,9 +29,7 @@ SECRET_KEY = 'django-insecure-t$+nd%b-sv_7_(*qszyue5y9h@#xgkpm4m!=!n-^d@6#e6haiv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    getenv("srv-cob95mmn7f5s739f5dp0/deploys/dep-cobr9fen7f5s73ftgqh0")
-]
+ALLOWED_HOSTS = ["niger-project.onrender.com"]
 
 
 # Application definition
