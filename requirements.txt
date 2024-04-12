@@ -1,7 +1,7 @@
 asgiref==3.8.1
 cffi==1.16.0
 cryptography==42.0.5
-Python >=3.6,<3.9
+Python==3.6
 Django==3.2.1
 django-filter==24.2
 django-rest-knox==4.2.0
