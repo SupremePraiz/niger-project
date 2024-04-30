@@ -1,21 +1,24 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
+
 class RegistrationSerializer(serializers.ModelSerializer):
-    password2 = serializers.CharField(style={"input_type":"password"}, write_only=True)
+    confirm_password = serializers.CharField(style={"input_type":"password"}, write_only=True)
+    password = serializers.CharField(style={"input_type":"password"})
     
     class Meta:
         model = User
-        fields = ["username", "email", "password", "password2"]
+        fields = ["username", "email", "password", "confirm_password"]
         extra_kwargs ={
-            "password":{"write_only": True}
+            "password":{"write_only": True},
+            
         }
         
     def save(self):
         password = self.validated_data["password"]
-        password2 = self.validated_data["password2"]
+        confirm_password = self.validated_data["confirm_password"]
             
-        if password != password2:
+        if password != confirm_password:
             raise serializers.ValidationError({"error":"password1 and password2 must be the same"})
         if User.objects.filter(email=self.validated_data["email"]).exists():
             raise serializers.ValidationError({"error":"this email has already been used"})
