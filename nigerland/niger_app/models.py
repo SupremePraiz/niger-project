@@ -17,6 +17,7 @@ class Surveyor(models.Model):
     
 class Documents(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE, related_name="user")
+    file_name = models.CharField(max_length=50)
     surveyor = models.ForeignKey(Surveyor,on_delete=models.CASCADE,related_name="documents")
     file = models.FileField(upload_to='excel_files/')
     created = models.DateTimeField(auto_now_add=True)

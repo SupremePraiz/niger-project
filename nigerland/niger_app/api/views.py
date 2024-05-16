@@ -13,7 +13,7 @@ from .pagination import DocumentListPagination, DocumentListPaginationLO, Docume
 
 class SurveyorDocument(generics.ListAPIView):
     queryset = Documents.objects.all()
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     serializer_class = DocumentSerializer
     pagination_class = DocumentListPaginationCu
        
@@ -37,7 +37,7 @@ class SurveyorDetail(generics.RetrieveUpdateDestroyAPIView):
 class DocumentList(generics.ListAPIView):
     # queryset = Documents.objects.all()
     serializer_class = DocumentSerializer
-    # permission_classes =[IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated]
     
     # filter_backends = [DjangoFilterBackend]
     # filterset_fields = ['user__username', 'location']
@@ -57,13 +57,14 @@ class DocumentCreate(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
     
      
-    def perform_create(self, serializer):
-        pk = self.kwargs.get('pk')
-        user = User.objects.get(pk=pk)
-        serializer.save(user=user)
+    # def perform_create(self, serializer):
+    #     pk = self.kwargs.get('pk')
+    #     user = User.objects.get(pk=pk)
+    #     serializer.save(user=user)
     
     
 class DocumentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Documents.objects.all()
     serializer_class = DocumentSerializer
+    permission_classes = [IsOwnerOrReadOnly]
     
