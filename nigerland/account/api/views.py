@@ -27,7 +27,28 @@ from .serializers import RegistrationSerializer
 #         return Response(serializer.data)
     
     
+# class RegistrationView(generics.CreateAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = RegistrationSerializer
+
+
+
 class RegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegistrationSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+
+        # Prepare the response data
+        response_data = {
+            'username': user.username,
+            'email': user.email
+        }
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(response_data, status=status.HTTP_201_CREATED, headers=headers)
+
     
