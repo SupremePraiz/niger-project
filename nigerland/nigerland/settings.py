@@ -15,6 +15,7 @@ from os import getenv
 
 import dj_database_url
 import os
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -149,28 +150,17 @@ REST_FRAMEWORK = {
 }
 
 
-SIMPLE_JWT ={
-    "ROTATE_REFRESH_TOKENS": True
+# SIMPLE_JWT ={
+#     "ROTATE_REFRESH_TOKENS": True
+# }
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    
 }
 
 
 # Allow all origins
 CORS_ALLOW_ALL_ORIGINS = True
 
-# Additional CORS settings (optional)
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "authorization",
-    "content-type",
-    "origin",
-    "x-csrftoken",
-    "x-requested-with",
-]

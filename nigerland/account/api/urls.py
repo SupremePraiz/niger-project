@@ -6,6 +6,7 @@ from .views import RegistrationView
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 
 
+
 urlpatterns = [
     # path("login/", obtain_auth_token,name="login"),
     # path("logout/", logout_view,name="logout"),
