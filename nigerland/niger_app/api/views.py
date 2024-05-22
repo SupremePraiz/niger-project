@@ -22,7 +22,7 @@ class SurveyorDocument(generics.ListAPIView):
 class SurveyorList(generics.ListCreateAPIView):
     queryset = Surveyor.objects.all()
     serializer_class = SurveyorSerializer
-    permission_classes =[IsAuthenticated]
+    # permission_classes =[IsAuthenticated]
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'email']
     
@@ -37,7 +37,7 @@ class SurveyorDetail(generics.RetrieveUpdateDestroyAPIView):
 class DocumentList(generics.ListAPIView):
     # queryset = Documents.objects.all()
     serializer_class = DocumentSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     
     # filter_backends = [DjangoFilterBackend]
     # filterset_fields = ['user__username', 'location']
@@ -46,21 +46,22 @@ class DocumentList(generics.ListAPIView):
     ordering_fields = ['user__username', 'email']
     pagination_class = DocumentListPaginationLO
     
-    
     def get_queryset(self):
         pk = self.kwargs['pk']
-        return Documents.objects.filter(user=pk)
+        return Documents.objects.filter(surveyor=pk)
+        
     
 class DocumentCreate(generics.CreateAPIView):
    
     serializer_class = DocumentSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
+    
+    def perform_create(self, serializer):
+        pk = self.kwargs.get('pk')
+        document = Surveyor.objects.get(pk=pk)
+        serializer.save(surveyor=document)
     
      
-    # def perform_create(self, serializer):
-    #     pk = self.kwargs.get('pk')
-    #     user = User.objects.get(pk=pk)
-    #     serializer.save(user=user)
     
     
 class DocumentDetail(generics.RetrieveUpdateDestroyAPIView):

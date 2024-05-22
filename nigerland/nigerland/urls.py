@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("niger/", include("niger_app.api.urls")),
     path("account/", include("account.api.urls")),
+    
 ]
 
 
