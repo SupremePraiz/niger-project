@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
+
 class RegistrationSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(style={"input_type":"password"}, write_only=True)
     password = serializers.CharField(style={"input_type":"password"})
@@ -31,7 +32,28 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return account
 
 
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
 
+        # Add custom claims
+        token['username'] = user.username
+        token['email'] = user.email
+
+        return token
+
+    def validate(self, attrs):
+        data = super().validate(attrs)
+
+        # Add additional data to the response
+        data.update({
+            'user_id': self.user.id,
+            'username': self.user.username,
+            'email': self.user.email,
+        })
+
+        return data
 
 
 

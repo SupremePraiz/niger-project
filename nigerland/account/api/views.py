@@ -4,10 +4,10 @@ from rest_framework import generics
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 
-
-from .serializers import RegistrationSerializer
+from .serializers import RegistrationSerializer, CustomTokenObtainPairSerializer
 
 # @api_view(['POST'])
 # def logout_view(request):
@@ -52,3 +52,9 @@ class RegistrationView(generics.CreateAPIView):
         return Response(response_data, status=status.HTTP_201_CREATED, headers=headers)
 
     
+
+
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
