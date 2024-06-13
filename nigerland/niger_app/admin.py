@@ -7,7 +7,7 @@ class SurveyorAdmin(admin.ModelAdmin):
     list_display = ["name", "email"]
     
 class SurveyorDocument(admin.ModelAdmin):
-    list_display = ["user", "surveyor", "file"]
+    list_display = ["user", "file"]
 
 admin.site.register(Surveyor, SurveyorAdmin)
 admin.site.register(Documents, SurveyorDocument)

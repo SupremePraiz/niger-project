@@ -52,14 +52,14 @@ class DocumentList(generics.ListAPIView):
         
     
 class DocumentCreate(generics.CreateAPIView):
-   
+    queryset = Documents.objects.all()
     serializer_class = DocumentSerializer
     # permission_classes = [IsAuthenticated]
     
-    def perform_create(self, serializer):
-        pk = self.kwargs.get('pk')
-        document = Surveyor.objects.get(pk=pk)
-        serializer.save(surveyor=document)
+    # def perform_create(self, serializer):
+    #     pk = self.kwargs.get('pk')
+    #     document = Surveyor.objects.get(pk=pk)
+    #     serializer.save(surveyor=document)
     
      
     

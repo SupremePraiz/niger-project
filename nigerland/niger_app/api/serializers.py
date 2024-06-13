@@ -10,7 +10,7 @@ class DocumentSerializer(serializers.ModelSerializer):
         fields = "__all__"
     
 class SurveyorSerializer(serializers.ModelSerializer):
-    documents = DocumentSerializer(many=True, read_only=True)
+    # documents = DocumentSerializer(many=True, read_only=True)
     
     
     class Meta:
